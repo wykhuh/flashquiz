@@ -4,7 +4,7 @@ var fs        = require('fs')
   , lodash    = require('lodash')
   , sequelize = new Sequelize('sequelize_test', 'root', null, {
       dialect: "sqlite", // or 'sqlite', 'postgres', 'mariadb'
-      storage: "/tmp/my.db",
+      storage: "mydatabase.db",
     })
   , db        = {}
 
