@@ -12,4 +12,13 @@ angular.module('myapp')
           }]
         }
       })
+      .when('/questions/add', {
+        templateUrl: './questions/question_form.html',
+        controller: 'QuestionsController',
+        resolve:{
+          resolvedQuestions: ['Questions', function (Questions) {
+            return Questions.query();
+          }]
+        }
+      })
     }]);

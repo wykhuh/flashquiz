@@ -5,6 +5,7 @@ angular.module('myapp')
     return $resource('myapp/questions/:id', {}, {
       'query': { method: 'GET', isArray: true},
       'get': { method: 'GET'},
-      'update': { method: 'PUT'}
+      'update': { method: 'PUT'},
+      'save' : {method: 'POST'}
     });
   }]);
