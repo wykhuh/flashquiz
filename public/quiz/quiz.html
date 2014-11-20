@@ -1,6 +1,4 @@
 <form ng-hide='showScore' name="form" role="form" >
-
-        
         <div class="form-group">
             <label>question:</label>
             {{question.question}}
@@ -19,6 +17,6 @@
 
         <button ng-hide='showNextButton' ng-click="submit(option)"  class="btn btn-primary">Submit</button>
 
-
 </form>
 
+ <p ng-show='showScore'>Total Score {{totalScore}}</p>

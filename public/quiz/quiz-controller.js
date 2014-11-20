@@ -15,7 +15,7 @@ angular.module('myapp')
       
       $scope.showNextButton = false;
       $scope.errorMessage = false;
-
+      $scope.showScore = false;
 
       // get all the questions from the database and store them in memory
       Questions.query().$promise.then(function (questions) {
@@ -27,25 +27,41 @@ angular.module('myapp')
         $scope.question = allQuestions[counter];
       });
 
+      var showScore = function () {
+          $scope.totalScore = totalScore;
+
+          $scope.showScore = true;
+      };
+
+
       $scope.next = function(){
         // show next question
         counter++;
-        $scope.question = allQuestions[counter];
 
+        // if there aren't any more questions, show score
+        if (!allQuestions[counter]) {
+            showScore();
+        // else if there are more questions, show next question
+        } else {
+            // reset start time and attempts; hide next button
+            start = Date.now();
+            attempts = 1;
+            $scope.question = allQuestions[counter];
+            $scope.showNextButton = false;
+        }
 
-        // reset start time and attempts
-        start = Date.now();
-        attempts = 1;
-        $scope.showNextButton = false;
       }
+
 
       $scope.submit = function (guess) {
         $scope.errorMessage = false;
 
-        console.log(guess, allQuestions[counter])
-        // if user submits correct answer
-        if(guess === allQuestions[counter].correctAnswer){
+        // if there aren't any more questions, show score
+        if (!allQuestions[counter]) {
+            showScore();
 
+        // else if user submits correct answer
+        } else if (guess === allQuestions[counter].correctAnswer){
 
           // reset start, end and attempts, and calculate score
           end = Date.now();
@@ -53,16 +69,20 @@ angular.module('myapp')
           start = Date.now();
           attempts = 1;
 
-          // calculate score go to next question 
+          // if there are more questions, show next question
           counter++;
-          $scope.question = allQuestions[counter];
+          if(allQuestions[counter]){
+            $scope.question = allQuestions[counter];
+          //else show final score
+          } else {
+            showScore();
+          }
 
         // else if user made more than max guesses, show next button
         } else if (attempts >= maxAttempts) {
           $scope.showNextButton = true;
-          $scope.remainingAttempts = maxAttempts - attempts;
-          attempts++;
-        // if user is wrong
+
+        // if user is wrong, show error message
         } else {
           $scope.remainingAttempts = maxAttempts - attempts;
           attempts++;
