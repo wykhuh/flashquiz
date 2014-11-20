@@ -10,8 +10,11 @@ angular.module('myapp')
         attempts = 1,
         totalScore = 0,
         maxAttempts = 3;
+
+      $scope.remainingAttempts = maxAttempts - attempts;
       
       $scope.showNextButton = false;
+      $scope.errorMessage = false;
 
 
       // get all the questions from the database and store them in memory
@@ -29,6 +32,7 @@ angular.module('myapp')
         counter++;
         $scope.question = allQuestions[counter];
 
+
         // reset start time and attempts
         start = Date.now();
         attempts = 1;
@@ -36,9 +40,12 @@ angular.module('myapp')
       }
 
       $scope.submit = function (guess) {
+        $scope.errorMessage = false;
+
         console.log(guess, allQuestions[counter])
         // if user submits correct answer
         if(guess === allQuestions[counter].correctAnswer){
+
 
           // reset start, end and attempts, and calculate score
           end = Date.now();
@@ -52,11 +59,14 @@ angular.module('myapp')
 
         // else if user made more than max guesses, show next button
         } else if (attempts >= maxAttempts) {
-            $scope.showNextButton = true;
-
+          $scope.showNextButton = true;
+          $scope.remainingAttempts = maxAttempts - attempts;
+          attempts++;
         // if user is wrong
         } else {
+          $scope.remainingAttempts = maxAttempts - attempts;
           attempts++;
+          $scope.errorMessage = true;
         }
 
       }
