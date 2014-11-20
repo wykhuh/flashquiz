@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myapp')
-  .controller('QuizController', ['$scope', '$location', 'Questions', 'Quiz',
-    function ($scope, $location, Questions, Quiz) {
+  .controller('QuizController', ['$scope', '$location', 'Questions', 'Quiz', 'Scores',
+    function ($scope, $location, Questions, Quiz, Scores) {
       var allQuestions = [],
         counter = 0,
         start = 0,
@@ -16,6 +16,7 @@ angular.module('myapp')
       $scope.showNextButton = false;
       $scope.errorMessage = false;
       $scope.showScore = false;
+      $scope.highestScore = 0;
 
       // get all the questions from the database and store them in memory
       Questions.query().$promise.then(function (questions) {
@@ -27,10 +28,18 @@ angular.module('myapp')
         $scope.question = allQuestions[counter];
       });
 
+      // show the final and highest score, and store score in database
       var showScore = function () {
-          $scope.totalScore = totalScore;
-
           $scope.showScore = true;
+          $scope.totalScore = totalScore;
+          // gets the highest  score from the database
+          Scores.query().$promise.then(function(res) {
+            if(res[0]){
+              $scope.highestScore = res[0].score;
+            }
+          });
+          // save score to database
+          Scores.save({score: totalScore, date: Date(), questionsCount: allQuestions.length });
       };
 
 
@@ -49,7 +58,6 @@ angular.module('myapp')
             $scope.question = allQuestions[counter];
             $scope.showNextButton = false;
         }
-
       }
 
 
