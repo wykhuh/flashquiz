@@ -1,0 +1,17 @@
+<form ng-hide='showScore' name="form" role="form" >
+
+        
+        <div class="form-group">
+            <label>question:</label>
+            {{question.question}}
+        </div>
+
+        <div ng-repeat="option in question.options" class="form-group">
+        <label >
+          <input type='radio' ng-model="$parent.option" ng-value="option" /> {{option}}
+        </label>
+        </div>
+
+        <button ng-hide='showNextButton' ng-click="submit(option)"  class="btn btn-primary">Submit</button>
+</form>
+
