@@ -73,7 +73,7 @@ angular.module('myapp')
 
           // reset start, end and attempts, and calculate score
           end = Date.now();
-          totalScore += Quiz.calculateScore(start, end, attempts);
+          totalScore += Quiz.calculateScore(start, end, attempts, allQuestions.length);
           start = Date.now();
           attempts = 1;
 
