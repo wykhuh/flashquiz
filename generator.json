@@ -1,0 +1,79 @@
+{
+	"baseName": "myapp",
+	"entities": [
+		{
+			"name": "scores",
+			"attrs": [
+				{
+					"attrName": "score",
+					"attrType": "Float",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "date",
+					"attrType": "Date",
+					"dateConstraint": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "questionsCount",
+					"attrType": "Integer",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				}
+			]
+		},
+		{
+			"name": "questions",
+			"attrs": [
+				{
+					"attrName": "question",
+					"attrType": "String",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "correctAnswer",
+					"attrType": "String",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "option1",
+					"attrType": "String",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "option2",
+					"attrType": "String",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "option3",
+					"attrType": "String",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				}
+			]
+		}
+	],
+	"resources": []
+}

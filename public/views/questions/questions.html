@@ -1,0 +1,135 @@
+<div>
+
+    <h2>Questions</h2>
+
+    <script type = "text/ng-template" id="questions-save.html">
+        <form name="form" role="form" novalidate
+              class="ng-scope ng-invalid ng-invalid-required ng-dirty"
+              ng-submit="ok()">
+
+            <div class="modal-header">
+                <button type="button" class="close"
+                        ng-click="cancel()">&times;</button>
+                <h4 class="modal-title" id="myQuestionsLabel">Create or edit a Questions</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" class="form-control" name="id"
+                           ng-model="questions.id" readonly>
+                </div>
+
+                
+                <div class="form-group">
+                    <label>question:</label>
+                    
+                    <input type="text" class="form-control" name="question"
+                           ng-model="questions.question" ng-required="true"
+                           />
+                    <span class="error" ng-show="form.question.$error.minlength">Must be at least  characters.</span>
+                    <span class="error" ng-show="form.question.$error.maxlength">Must be at most  characters.</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>correctAnswer:</label>
+                    
+                    <input type="text" class="form-control" name="correctAnswer"
+                           ng-model="questions.correctAnswer" ng-required="true"
+                           />
+                    <span class="error" ng-show="form.correctAnswer.$error.minlength">Must be at least  characters.</span>
+                    <span class="error" ng-show="form.correctAnswer.$error.maxlength">Must be at most  characters.</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>option1:</label>
+                    
+                    <input type="text" class="form-control" name="option1"
+                           ng-model="questions.option1" ng-required="true"
+                           />
+                    <span class="error" ng-show="form.option1.$error.minlength">Must be at least  characters.</span>
+                    <span class="error" ng-show="form.option1.$error.maxlength">Must be at most  characters.</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>option2:</label>
+                    
+                    <input type="text" class="form-control" name="option2"
+                           ng-model="questions.option2" ng-required="true"
+                           />
+                    <span class="error" ng-show="form.option2.$error.minlength">Must be at least  characters.</span>
+                    <span class="error" ng-show="form.option2.$error.maxlength">Must be at most  characters.</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>option3:</label>
+                    
+                    <input type="text" class="form-control" name="option3"
+                           ng-model="questions.option3" ng-required="true"
+                           />
+                    <span class="error" ng-show="form.option3.$error.minlength">Must be at least  characters.</span>
+                    <span class="error" ng-show="form.option3.$error.maxlength">Must be at most  characters.</span>
+                </div>
+                
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancel()">Cancel
+                </button>
+                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </script>
+
+    <button class="btn btn-primary btn-lg" ng-click="create()">
+        <span class="glyphicon glyphicon-flash"></span> Create a new Questions
+    </button>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                
+                <th>question</th>
+                
+                <th>correctAnswer</th>
+                
+                <th>option1</th>
+                
+                <th>option2</th>
+                
+                <th>option3</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="questions in questions">
+                <td>{{questions.id}}</td>
+                
+                <td>{{questions.question }}</td>
+                
+                <td>{{questions.correctAnswer }}</td>
+                
+                <td>{{questions.option1 }}</td>
+                
+                <td>{{questions.option2 }}</td>
+                
+                <td>{{questions.option3 }}</td>
+                
+                <td>
+                    <button type="submit"
+                            ng-click="update(questions.id)"
+                            class="btn">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </button>
+                    <button type="submit"
+                            ng-click="delete(questions.id)"
+                            class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove-circle"></span> Delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
