@@ -9,5 +9,5 @@ $ npm install
 $ node app.js
 
 ## Tech stack
-Angular, Express, Yeomen angular-express-sequelize
+Angular, Express, sqlite3, Sequelize, Yeomen angular-express-sequelize
 
