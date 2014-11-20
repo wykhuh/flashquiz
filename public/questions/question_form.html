@@ -1,0 +1,55 @@
+<form name="form" role="form" ng-submit="save(newQuestion)">
+
+    <h2>Create or edit a Questions</h2>
+        <div class="form-group">
+            <label>ID</label>
+            <input type="text" class="form-control" name="id"
+                   ng-model="newQuestion.id" readonly>
+        </div>
+
+        
+        <div class="form-group">
+            <label>question:</label>
+            
+            <input type="text" class="form-control" name="question"
+                   ng-model="newQuestion.question" ng-required="true"
+                   />
+        </div>
+        
+        <div class="form-group">
+            <label>correct answer:</label>
+            
+            <input type="text" class="form-control" name="correctAnswer"
+                   ng-model="newQuestion.correctAnswer" ng-required="true"
+                   />
+        </div>
+        
+        <div class="form-group">
+            <label>option 1:</label>
+            
+            <input type="text" class="form-control" name="option1"
+                   ng-model="newQuestion.option1" ng-required="true"
+                   />
+        </div>
+        
+        <div class="form-group">
+            <label>option 2:</label>
+            
+            <input type="text" class="form-control" name="option2"
+                   ng-model="newQuestion.option2" ng-required="true"
+                   />
+        </div>
+        
+        <div class="form-group">
+            <label>option 3:</label>
+            
+            <input type="text" class="form-control" name="option3"
+                   ng-model="newQuestion.option3" ng-required="true"
+                   />
+        </div>
+        
+
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel
+        </button>
+        <button type="submit"  class="btn btn-primary">Save</button>
+</form>
