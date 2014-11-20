@@ -22,6 +22,32 @@ angular.module('myapp')
         return array;
     };
 
+    // calculate score based on time elapsed and attempts
+    var calculateScore = function (start, end, attempts) {
+        var score = 0;
+        var diff = (end - start) / 1000;
+        var attemptsMultiplier = {0: 0, 1: 1, 2: 0.75, 3: 0.5};
+  
+        if (attempts > 3) {
+            score = 0;
+        } else if (diff <= 10) {
+            score = 1 * attemptsMultiplier[attempts];
+        } else if (diff <= 20) {
+            score = 0.9 * attemptsMultiplier[attempts];
+        } else if (diff <= 30) {
+            score = 0.8 * attemptsMultiplier[attempts];
+        } else {
+            score = 0.75 * attemptsMultiplier[attempts];
+        }
+
+        console.log('score:', score,
+                    ', attempts:', attempts,
+                    ', attemptsMultiplier:', attemptsMultiplier[attempts],
+                    ', time: ', diff);
+
+        return score;
+    };
+
     // reorganizes the questions data from the database 
     var processQandA = function (questions) {
         var list = [];
@@ -41,7 +67,8 @@ angular.module('myapp')
     };
 
     return {
-        processQandA: processQandA
+        processQandA: processQandA,
+        calculateScore: calculateScore
     };
 
   }]);
