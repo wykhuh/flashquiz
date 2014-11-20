@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myapp')
-  .controller('ScoresController', ['$scope', '$modal', 'resolvedScores', 'Scores',
-    function ($scope, $modal, resolvedScores, Scores) {
+  .controller('ScoresController', ['$scope', 'resolvedScores', 'Scores',
+    function ($scope, resolvedScores, Scores) {
 
       // $scope.scores = resolvedScores;
 

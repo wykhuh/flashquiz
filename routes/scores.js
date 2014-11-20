@@ -1,7 +1,7 @@
 var db = require('../models')
 
 exports.findAll = function(req, res) {
-  db.Scores.findAll().success(function(entities) {
+  db.Scores.findAll({order: 'score DESC'}).success(function(entities) {
     res.json(entities)
   })
 }
