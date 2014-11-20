@@ -34,7 +34,7 @@ angular.module('myapp')
         questions.forEach(function (question) {
             options = [question.correctAnswer, question.option1, question.option2, question.option3];
             shuffle(options);
-            list.push({question: question.question, options: options, correct: question.correctAnswer});
+            list.push({question: question.question, options: options, correctAnswer: question.correctAnswer});
         });
   
         return list;
