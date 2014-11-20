@@ -6,9 +6,7 @@ angular.module('myapp')
 
       // $scope.scores = resolvedScores;
 
-      $scope.scores = [{score: 10, questionsCount: 3, date: Date()}, 
-                       {score: 30, questionsCount: 4, date: Date()},
-                      {score: 20, questionsCount: 5, date: Date()}]
+      $scope.scores = Scores.query();
 
       $scope.delete = function (id) {
         Scores.delete({id: id},
