@@ -5,10 +5,13 @@ angular.module('myapp')
     function ($scope, $location, Questions, Quiz) {
       var allQuestions = [],
         counter = 0,
-        start = 0, 
+        start = 0,
         end = 0,
         attempts = 1,
-        totalScore = 0;
+        totalScore = 0,
+        maxAttempts = 3;
+      
+      $scope.showNextButton = false;
 
 
       // get all the questions from the database and store them in memory
@@ -20,6 +23,17 @@ angular.module('myapp')
         start = Date.now();
         $scope.question = allQuestions[counter];
       });
+
+      $scope.next = function(){
+        // show next question
+        counter++;
+        $scope.question = allQuestions[counter];
+
+        // reset start time and attempts
+        start = Date.now();
+        attempts = 1;
+        $scope.showNextButton = false;
+      }
 
       $scope.submit = function (guess) {
         console.log(guess, allQuestions[counter])
@@ -36,6 +50,9 @@ angular.module('myapp')
           counter++;
           $scope.question = allQuestions[counter];
 
+        // else if user made more than max guesses, show next button
+        } else if (attempts >= maxAttempts) {
+            $scope.showNextButton = true;
 
         // if user is wrong
         } else {
